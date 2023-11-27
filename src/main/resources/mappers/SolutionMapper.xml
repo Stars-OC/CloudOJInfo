@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.starsoc.cloudojinfo.mapper.SolutionMapper">
+
+    <!--  查询 s.contest_id 比赛 中 u.username 所有题目最高分代码  -->
+    <select id="checkContest" resultType= "xyz.starsoc.cloudojinfo.pojo.ContestAllCode">
+        SELECT score.username,score.nickname,s.title,s.score,sc.code,from_unixtime(submit_time) as time
+        FROM (
+                 SELECT u.username as username,u.nickname as nickname,u.uid as uid ,MAX(s.score) as score,s.problem_id as problem_id
+                 FROM solution s,`user` u
+                 WHERE u.uid = s.uid and s.contest_id = #{contestId} and u.username = #{username}
+                 group by s.problem_id) score,
+             source_code sc, solution s
+        WHERE sc.solution_id = s.solution_id and s.problem_id = score.problem_id and s.score = score.score and s.uid = score.uid
+        group by s.problem_id
+    </select>
+
+</mapper>
