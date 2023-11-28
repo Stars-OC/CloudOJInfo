@@ -35,7 +35,7 @@ public class LoginFilter implements Filter {
         // 获取请求的URL
         String url = request.getRequestURL().toString();
 
-        // 如果URL包含"/user/login"或"/user/register"，则不进行鉴权，直接放行
+        // 如果URL包含"/login"，则不进行鉴权，直接放行
         if (url.contains("/login")) {
             chain.doFilter(servletRequest, servletResponse);
             return;

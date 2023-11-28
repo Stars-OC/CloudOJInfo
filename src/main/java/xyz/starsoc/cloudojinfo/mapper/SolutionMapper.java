@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 import xyz.starsoc.cloudojinfo.pojo.ContestAllCode;
+import xyz.starsoc.cloudojinfo.pojo.ContestOneBlood;
 import xyz.starsoc.cloudojinfo.pojo.Solution;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface SolutionMapper extends BaseMapper<Solution> {
 
     /**查询 contestId 比赛 中 username 所有题目最高分代码**/
     List<ContestAllCode> checkContest(String username, String contestId);
+
+    List<ContestOneBlood> checkOneBlood(String username, String contestId);
 }

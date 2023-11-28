@@ -5,7 +5,7 @@
 
     <!--  查询 s.contest_id 比赛 中 u.username 所有题目最高分代码  -->
     <select id="checkContest" resultType= "xyz.starsoc.cloudojinfo.pojo.ContestAllCode">
-        SELECT score.username,score.nickname,s.title,s.score,sc.code,from_unixtime(submit_time) as time
+        SELECT score.username,score.nickname,s.title,s.score,sc.code,submit_time as time
         FROM (
                  SELECT u.username as username,u.nickname as nickname,u.uid as uid ,MAX(s.score) as score,s.problem_id as problem_id
                  FROM solution s,`user` u
@@ -14,6 +14,17 @@
              source_code sc, solution s
         WHERE sc.solution_id = s.solution_id and s.problem_id = score.problem_id and s.score = score.score and s.uid = score.uid
         group by s.problem_id
+    </select>
+    <select id="checkOneBlood" resultType="xyz.starsoc.cloudojinfo.pojo.ContestOneBlood">
+        SELECT u.username,
+               u.nickname,
+               s.problem_id,
+               s.title,
+               s.submit_time as time
+        from `user` u ,solution s
+        WHERE s.contest_id = 14 and u.uid =s.uid and s.`result` = "AC"
+        GROUP BY s.problem_id
+        ORDER by s.submit_time
     </select>
 
 </mapper>
