@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xyz.starsoc.cloudojinfo.mapper.SolutionMapper;
-import xyz.starsoc.cloudojinfo.pojo.ContestAllCode;
+import xyz.starsoc.cloudojinfo.pojo.CloudOJCode;
 import xyz.starsoc.cloudojinfo.pojo.ContestOneBlood;
 
 import java.util.List;
@@ -16,16 +16,23 @@ public class SolutionCodeService {
     @Autowired
     private SolutionMapper mapper;
 
-    public List<ContestAllCode> getContestAllCode(String username, String contestId) {
+    public List<CloudOJCode> getContestAllCode(String username, Integer contestId) {
 
-        List<ContestAllCode> list = mapper.checkContest(username, contestId);
+        List<CloudOJCode> list = mapper.checkContest(username, contestId);
 
         return list;
     }
 
-    public List<ContestOneBlood> getContestOneBlood(String username, String contestId) {
+    public List<ContestOneBlood> getContestOneBlood( Integer contestId) {
 
-        List<ContestOneBlood> list = mapper.checkOneBlood(username, contestId);
+        List<ContestOneBlood> list = mapper.checkOneBlood(contestId);
+
+        return list;
+    }
+
+    public List<CloudOJCode> getProblemSubmitCode(String username, Integer problemId,Integer limit) {
+
+        List<CloudOJCode> list = mapper.getUsernameOneCode(username, problemId, limit);
 
         return list;
     }

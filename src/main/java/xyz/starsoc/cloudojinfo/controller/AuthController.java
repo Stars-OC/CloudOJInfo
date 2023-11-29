@@ -1,21 +1,11 @@
 package xyz.starsoc.cloudojinfo.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import xyz.starsoc.cloudojinfo.config.UserConfiguration;
-import xyz.starsoc.cloudojinfo.mapper.SolutionMapper;
-import xyz.starsoc.cloudojinfo.pojo.ContestAllCode;
 import xyz.starsoc.cloudojinfo.pojo.Result;
-import xyz.starsoc.cloudojinfo.pojo.Solution;
 import xyz.starsoc.cloudojinfo.pojo.User;
-
-import java.util.List;
 
 @RestController
 @Slf4j
