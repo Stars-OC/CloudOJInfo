@@ -2,6 +2,7 @@ package xyz.starsoc.cloudojinfo.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import xyz.starsoc.cloudojinfo.config.UserConfiguration;
 import xyz.starsoc.cloudojinfo.pojo.Result;
@@ -23,7 +24,7 @@ public class AuthController {
      * @return 返回登录结果，成功时返回包含令牌的Result对象，失败时返回包含错误信息的Result对象
      */
     @PostMapping("/login")
-    public Result<String> login(@RequestBody User user) {
+    public Result<String> login(@Validated @RequestBody User user) {
 
         if (admin.getUsername().equals(user.getUsername()) && admin.getPassword().equals(user.getPassword())) {
 

@@ -28,6 +28,7 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-validation:3.1.3")
     compileOnly("org.projectlombok:lombok")
     runtimeOnly("org.mariadb.jdbc:mariadb-java-client:3.2.0")
     implementation("com.baomidou:mybatis-plus-boot-starter:3.5.3.2")
