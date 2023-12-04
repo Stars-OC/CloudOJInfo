@@ -7,11 +7,11 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class CloudOJListCode {
+public class PageList<T> {
     private Integer count;
-    private List<CloudOJCode> data;
+    private List<T> data;
 
-    public CloudOJListCode(List<CloudOJCode> data) {
+    public PageList(List<T> data) {
         this.count = data.size();
         this.data = data;
     }

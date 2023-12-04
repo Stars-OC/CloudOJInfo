@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xyz.starsoc.cloudojinfo.mapper.SolutionMapper;
 import xyz.starsoc.cloudojinfo.pojo.CloudOJCode;
-import xyz.starsoc.cloudojinfo.pojo.CloudOJListCode;
 import xyz.starsoc.cloudojinfo.pojo.ContestOneBlood;
+import xyz.starsoc.cloudojinfo.pojo.PageList;
 
 import java.util.List;
 
@@ -31,10 +31,10 @@ public class SolutionCodeService {
         return list;
     }
 
-    public CloudOJListCode getProblemSubmitCode(String username, Integer problemId, Integer limit) {
+    public PageList<CloudOJCode> getProblemSubmitCode(String username, Integer problemId, Integer limit) {
 
         List<CloudOJCode> list = mapper.getUsernameOneCode(username, problemId, limit);
 
-        return new CloudOJListCode(list);
+        return new PageList<>(list);
     }
 }

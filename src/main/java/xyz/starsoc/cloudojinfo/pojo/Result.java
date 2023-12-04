@@ -81,7 +81,7 @@ public class Result<T> implements Serializable {
      * 失 败 操 作, 默 认 数 据
      */
     public static <T> Result<T> failure() {
-        return failure(ResultCode.RC200.getMessage());
+        return failure(ResultCode.RC999.getMessage());
     }
 
     /**
@@ -170,7 +170,7 @@ public class Result<T> implements Serializable {
     }
 
 
-        /**
+    /**
      * 根据给定的错误码返回一个失败的结果对象。
      *
      * @param resultCode 错误码

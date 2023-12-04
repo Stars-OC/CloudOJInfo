@@ -9,10 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import xyz.starsoc.cloudojinfo.pojo.CloudOJCode;
-import xyz.starsoc.cloudojinfo.pojo.CloudOJListCode;
-import xyz.starsoc.cloudojinfo.pojo.ContestOneBlood;
-import xyz.starsoc.cloudojinfo.pojo.Result;
+import xyz.starsoc.cloudojinfo.pojo.*;
 import xyz.starsoc.cloudojinfo.service.SolutionCodeService;
 
 import java.util.List;
@@ -70,12 +67,12 @@ public class SolutionCodeController {
      * @return 结果对象，包含成功或失败的状态和可能的错误信息。如果结果为成功，还包含提交代码列表。
      */
     @GetMapping("/problem/code/getSubmit")
-    public Result<CloudOJListCode> submit(@RequestParam(defaultValue = "5") Integer limit,
+    public Result<PageList<CloudOJCode>> submit(@RequestParam(defaultValue = "5") Integer limit,
                                           @NotEmpty(message = "用户名不能为空") String username,
                                           @NotNull(message = "problemId不能为空") Integer problemId){
 
         // 获取指定问题的提交代码列表
-        CloudOJListCode list = solutionCodeService.getProblemSubmitCode(username, problemId, limit);
+        PageList<CloudOJCode> list = solutionCodeService.getProblemSubmitCode(username, problemId, limit);
 
         // 检查获取结果是否为空，返回相应的结果对象
         return list.getCount() == 0?Result.failure("获取失败"):Result.success("获取成功",list);

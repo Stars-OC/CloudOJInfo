@@ -1,5 +1,6 @@
 package xyz.starsoc.cloudojinfo.filter;
 
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
@@ -47,7 +48,7 @@ public class LoginFilter implements Filter {
 
         String result = "";
         // 如果token为空，则返回"token不存在，请登录"
-        if (token == null || token == "") {
+        if (StringUtils.isEmpty(token)) {
             result = mapper.writeValueAsString(Result.codeFailure(ResultCode.TOKEN_INVALID));
             response.getWriter().write(result);
             return;
