@@ -5,7 +5,14 @@
 
     <!--  查询 s.contest_id 比赛 中 u.username 所有题目最高分代码  -->
     <select id="checkContest" resultType= "xyz.starsoc.cloudojinfo.pojo.CloudOJCode">
-        SELECT score.username,score.nickname,s.title,s.problem_id,s.score,sc.code as code,submit_time as time,s.result
+        SELECT score.username,
+               score.nickname,
+               s.title,
+               s.problem_id,
+               s.score,
+               sc.code as code,
+               submit_time as time,
+               s.result
         FROM (
                  SELECT u.username as username,u.nickname as nickname,u.uid as uid ,MAX(s.score) as score,s.problem_id as problem_id
                  FROM solution s,`user` u
